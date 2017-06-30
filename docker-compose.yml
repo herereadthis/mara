@@ -1,0 +1,26 @@
+# version 3 means swarm mode compatible
+version: "3"
+services:
+  web:
+    image: herereadthis/mara:latest
+    deploy:
+      # run five instances of this image as a service called web
+      replicas: 5
+      resources:
+        limits:
+          # limit each to use at most 10% of CPU
+          cpus: "0.1"
+          # limit to 50M
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      # map port 80 on the host to web's port 80
+      - "80:80"
+    networks:
+      # instruct web's containers to share port 80 via a load-balanced network
+      # called webnet
+      - webnet
+networks:
+  # define the webnet network with default settings
+  webnet:

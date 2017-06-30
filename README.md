@@ -38,3 +38,17 @@ docker push herereadthis/mara:part1
 # Pull and run the image from the remote repository
 docker run -p 4000:80 herereadthis/mara:part1
 ```
+
+```bash
+# Services
+
+# Start the swarm
+docker swarm init
+
+docker stack deploy -c docker-compose.yml helloworld2
+
+docker stack ps helloworld2
+
+# go to localhost
+# each time you refresh, the container ID will be different
+```
